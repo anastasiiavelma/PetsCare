@@ -6,9 +6,15 @@ const AccountSchema = new mongoose.Schema({
       required: true,
         unique: true,
     },
+    name:{
+        type: String,
+    },
     passwordHash:{
         type: String,
         required: true,
+    },
+    role:{                  // ADMIN OR USER
+        type: String,
     },
 
 }, {

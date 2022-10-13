@@ -1,13 +1,19 @@
-
 import express from 'express';
-import jwt from 'jsonwebtoken';
+import multer from 'multer';
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import { validationResult } from 'express-validator';
-import { registerValidation }from './validations/auth.js';
-
-import AccountModel from './models/Account.js';
+import {
+    registerValidation,
+    loginValidation,
+    articleCreateValidation,
+    noteCreateValidation,
+    petPassCreateValidation
+} from './validations.js';
 import checkAuth from './utils/checkAuth.js'
+import * as AccountController from './controllers/AccountController.js';
+import * as ArticleController from './controllers/ArticleController.js';
+import * as NoteController from "./controllers/NoteControllers.js";
+import * as petPassportController from "./controllers/petPassportConrollers.js";
+import * as TestControllers from "./controllers/TestControllers.js";
 
 const app = express()
 const port = 3000
@@ -16,97 +22,34 @@ app.use(express.json());
 
 mongoose.connect('mongodb+srv://petsCare:PetsCare270203Work@petscare.q0mdbtj.mongodb.net/PetsCare?retryWrites=true&w=majority').then(() => console.log('db ok')).catch((err) => console.log('bb err', err));
 
-app.post('/auth/login',  async (req, res) => {
-
-    try{
-        const account = await AccountModel.findOne({ email: req.body.email});
-
-        if(!account) {
-            return res.status(404).json({
-                message: 'Wrong password or login',
-            });
-        }
-
-        const isValidPass = await bcrypt.compare(req.body.password, account._doc.passwordHash);
-
-        if(!isValidPass){
-            return res.status(400).json({
-                message: 'Wrong password or login',
-            });
-        }
-        const token = jwt.sign(
-            {
-                _id: account._id,
-            },
-            'secret123',
-            {
-                expiresIn: '30d',
-            },
-        );
-
-        const {passwordHash, ...accountData} = account._doc;
-
-        res.json({
-            ...accountData, token,
-        });
-
-    } catch(err){
-        console.log(err);
-        res.status(500).json({
-            message: 'Something went wrong',
-        });
-    };
-});
+app.post('/auth/login', loginValidation, AccountController.login );
+app.post('/auth/register', registerValidation, AccountController.register);
+app.get('/auth/me', checkAuth, AccountController.getMe);
 
 
-app.post('/auth/register', registerValidation, async (req, res) => {
-  try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-          return res.status(400).json(errors.array());
-      }
+app.get('/articles',  ArticleController.getAll);
+app.get('/articles/:id', checkAuth, ArticleController.getOne);
+app.post('/articles',checkAuth, articleCreateValidation, ArticleController.create);
+app.delete('/articles/:id',checkAuth, ArticleController.remove);
+app.patch('/articles/:id',checkAuth, ArticleController.update);
 
-      const password = req.body.password;
-      const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(password, salt);
+app.get('/notes',  NoteController.getAll);
+app.get('/notes/:id', checkAuth, NoteController.getOne);
+app.post('/notes', checkAuth, noteCreateValidation, NoteController.create);
+app.delete('/notes/:id',checkAuth, NoteController.remove);
+app.patch('/notes/:id',checkAuth, NoteController.update);
 
-      const doc = new AccountModel({
-          email: req.body.email,
-          passwordHash: hash,
-      });
+app.get('/petPass', petPassportController.getAll);
+app.get('/petPass/:id', checkAuth, petPassportController.getOne);
+app.post('/petPass', checkAuth, petPassCreateValidation,petPassportController.create);
+app.delete('/petPass/:id',checkAuth,petPassportController.remove);
+app.patch('/petPass/:id',checkAuth, petPassportController.update);
 
-      const account = await doc.save();
-
-      const token = jwt.sign(
-          {
-          _id: account._id,
-                 },
-          'secret123',
-          {
-              expiresIn: '30d',
-                 },
-          );
-      const {passwordHash, ...accountData} = account._doc;
-      res.json({
-          ...accountData, token,
-      });
-  } catch (err) {
-      console.log(err);
-      res.status(500).json({
-      message: 'Something went wrong',
-  });
-
-  }
-});
-
-app.get('/auth/me', checkAuth, (req, res) => {
-  try{
-    res.json({
-        success: true,
-    });
-  } catch(err) {}
-
-});
+app.get('/tests', TestControllers.getAll);
+app.get('/tests/:id', checkAuth, TestControllers.getOne);
+app.post('/tests', checkAuth, TestControllers.create);
+app.delete('/tests/:id',checkAuth,TestControllers.remove);
+app.patch('/tests/:id',checkAuth, TestControllers.update);
 
 
 app.listen(port, () => {

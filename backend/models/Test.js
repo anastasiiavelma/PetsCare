@@ -1,36 +1,28 @@
-import mongoose from "mongoose";
-import {ObjectId} from "mongodb";
+import mongoose from 'mongoose'
 
 const QuestionType = {
-    questionName: String,
+    questionTest: String,
     answers: [{
         isRight: Boolean,
         text: String,
-    }],
-}
-const ResultType = {
-    percent: {
-        type: Number,
-        required: true,
-    },
-    diagnosisId: {
-        type: ObjectId,
-        ref: 'Diagnosis',
-    },
+    }]
 }
 
-const testSchema = new mongoose.Schema({
-
-    name:{
+const TestSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true,
     },
-    information:{
-        type: String,
+    description: String,
+    questions: {
+        type: [QuestionType],
         required: true,
     },
-    questions: QuestionType,
+    account: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account',
+        requires: true,
+    },
+}, { timestamps: true })
 
-});
-
-export default mongoose.model('Test', testSchema);
+export default mongoose.model('Test', TestSchema)

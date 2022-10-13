@@ -6,11 +6,19 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    information:{
+    textInfo:{
         type: String,
         required: true,
     },
-    photo: String,
-});
+    account:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account',
+        required: true,
+    },
+        photoUrl: String,
+}, {
+        timestamps: true,
+    },
+);
 
 export default mongoose.model('Article', articleSchema);

@@ -1,13 +1,8 @@
 import mongoose from "mongoose";
-import {Double, Int32, ObjectId} from "mongodb";
 
 const petPassSchema = new mongoose.Schema({
         birth: {
             type: Date,
-            required: true,
-        },
-        name:{
-            type: String,
             required: true,
         },
         feed:{
@@ -23,22 +18,16 @@ const petPassSchema = new mongoose.Schema({
             required: true,
         },
         weight:{
-            type: Double,
+            type: Number,
             required: true,
         },
         sterilization:{
             type: Boolean,
             required: true,
         },
-        accountId:{
-            type: ObjectId,
+        account:{
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Account',
-            required: true,
-            unique: true,
-        },
-        diagnosisId:{
-            type: ObjectId,
-            ref: 'Diagnosis',
             required: true,
         },
         photo: String,
