@@ -1,10 +1,18 @@
 .LoaderContainer {
     width: 100vw;
     height: 100vh;
-    background: #01241b;
+    background: #e9c3c3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes ldio-zdnre4eeno {
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes ldiozdnre4eeno {
     0% {
         opacity: 1
     }
@@ -16,39 +24,39 @@
     }
 }
 
-.ldio-zdnre4eeno div {
+.ldiozdnre4eeno div {
     position: absolute;
     width: 20px;
     height: 80px;
     top: 60px;
-    animation: ldio-zdnre4eeno 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: ldiozdnre4eeno 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
-.ldio-zdnre4eeno div:nth-child(1) {
+.ldiozdnre4eeno div:nth-child(1) {
     transform: translate(30px, 0);
-    background: #220b09;
+    background: #503007;
     animation-delay: -0.6s;
 }
 
-.ldio-zdnre4eeno div:nth-child(2) {
+.ldiozdnre4eeno div:nth-child(2) {
     transform: translate(70px, 0);
     background: #d34c31;
     animation-delay: -0.4s;
 }
 
-.ldio-zdnre4eeno div:nth-child(3) {
+.ldiozdnre4eeno div:nth-child(3) {
     transform: translate(110px, 0);
     background: #e88432;
     animation-delay: -0.2s;
 }
 
-.ldio-zdnre4eeno div:nth-child(4) {
+.ldiozdnre4eeno div:nth-child(4) {
     transform: translate(150px, 0);
-    background: #ff312d;
+    background: #dca93c;
     animation-delay: -1s;
 }
 
-.loadingio-spinner-bars-r7sxmsow67q {
+.loadingiospinnerbarsr7sxmsow67q {
     width: 200px;
     height: 200px;
     display: inline-block;
@@ -56,7 +64,7 @@
     background: #f1f2f3;
 }
 
-.ldio-zdnre4eeno {
+.ldiozdnre4eeno {
     width: 100%;
     height: 100%;
     position: relative;
@@ -65,6 +73,6 @@
     transform-origin: 0 0; /* see note above */
 }
 
-.ldio-zdnre4eeno div {
+.ldiozdnre4eeno div {
     box-sizing: content-box;
 }
