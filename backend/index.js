@@ -13,11 +13,13 @@ import * as ArticleController from './controllers/ArticleController.js';
 import * as NoteController from "./controllers/NoteControllers.js";
 import * as petPassportController from "./controllers/petPassportConrollers.js";
 import * as TestControllers from "./controllers/TestControllers.js";
+import cors from "cors";
 
 const app = express()
-const port = 3000
+const port = 5000
 
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect('mongodb+srv://petsCare:PetsCare270203Work@petscare.q0mdbtj.mongodb.net/PetsCare?retryWrites=true&w=majority').then(() => console.log('db ok')).catch((err) => console.log('bb err', err));
 
