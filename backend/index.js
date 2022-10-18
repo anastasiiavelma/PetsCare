@@ -14,8 +14,11 @@ import * as NoteController from "./controllers/NoteControllers.js";
 import * as petPassportController from "./controllers/petPassportConrollers.js";
 import * as TestControllers from "./controllers/TestControllers.js";
 import cors from "cors";
+import http from "http";
+
 
 const app = express()
+const server = http.createServer(app)
 const port = 5000
 
 app.use(express.json());
@@ -53,6 +56,6 @@ app.delete('/tests/:id',checkAuth,TestControllers.remove);
 app.patch('/tests/:id',checkAuth, TestControllers.update);
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
