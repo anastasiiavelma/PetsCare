@@ -1,6 +1,5 @@
 import express from 'express';
-import multer from 'multer';
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import {
     registerValidation,
     loginValidation,
