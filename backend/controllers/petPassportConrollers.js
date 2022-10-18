@@ -1,8 +1,8 @@
-import petPassModel from '../models/petPassport.js';
+import PetPassModel from '../models/petPassport.js';
 
 export const getAll = async (req, res) => {
     try{
-        const petPass = await petPassModel.find().populate('account').exec();
+        const petPass = await PetPassModel.find().populate('account').exec();
 
         res.json(petPass);
     }
@@ -17,7 +17,7 @@ export const getOne = async (req, res) => {
     try {
         const petPassId = req.params.id;
 
-        petPassModel.findOneAndUpdate(
+        PetPassModel.findOneAndUpdate(
             {
                 _id: petPassId,
             },
@@ -53,7 +53,7 @@ export const remove = async (req, res) => {
     try{
         const petPassId = req.params.id;
 
-        petPassModel.findOneAndDelete({
+        PetPassModel.findOneAndDelete({
                 _id: petPassId,
             },
             (err, doc) => {
@@ -85,7 +85,8 @@ export const remove = async (req, res) => {
 }
 export const create = async (req, res) => {
     try {
-        const doc = new petPassModel({
+        const doc = new PetPassModel(
+            {
             birth: req.body.birth,
             feed: req.body.feed,
             gender: req.body.gender,
@@ -110,7 +111,7 @@ export const create = async (req, res) => {
 export const update = async (req, res) => {
     try{
         const petPassId = req.params.id;
-        await petPassModel.updateOne({
+        await PetPassModel.updateOne({
                 _id: petPassId,
             }, {
             birth: req.body.birth,
