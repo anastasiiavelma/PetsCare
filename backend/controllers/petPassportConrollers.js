@@ -1,4 +1,4 @@
-import PetPassModel from '../models/petPassport.js';
+import PetPassModel from '../models/PetPassport.js';
 
 export const getAll = async (req, res) => {
     try{
