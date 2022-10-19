@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import AuthPage from '../pages/authPage'
+import AuthPage from '../pages/AuthPage'
+import MainPage from '../pages/MainPage'
 
 const PrivateRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const PublicRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<AuthPage />} />
+      <Route path="/home" element={<MainPage />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   )
