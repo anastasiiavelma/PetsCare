@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "serv": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
-    "start": "node index.js"
+    "serv": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "author": "",
   "license": "ISC",
