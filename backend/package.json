@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "serv": "nodemon index.js",
+    "serv": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
     "start": "node index.js"
   },
   "author": "",
