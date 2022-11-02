@@ -6,8 +6,8 @@ import MainPage from '../pages/MainPage'
 const PrivateRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<>MainPrivate</>} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/home" element={<MainPage />} />
+      <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   )
 }

@@ -1,20 +1,23 @@
 import React from 'react'
-import { Box, Paper, Typography } from '@mui/material'
-import PageLayout from '../../layout'
-import { useTranslation } from 'react-i18next'
+
+import background from '../../assets/images/backCat1.jpg'
+import { Header } from '../../components/Header'
+import Statistics from '../../components/Statistics'
 
 const MainPage = () => {
-  const { t } = useTranslation()
   return (
-    <PageLayout>
-      <Box>
-        <Paper>
-          <Typography variant="h1" sx={{ fontFamily: 'MighaBold' }}>
-            {t('Authorization')}
-          </Typography>
-        </Paper>
-      </Box>
-    </PageLayout>
+    <>
+      <Header />
+      <div
+        style={{
+          display: 'flex',
+          background: `url(${background}) center / cover no-repeat`,
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh'
+        }}>
+        <Statistics />
+      </div>
+    </>
   )
 }
 
