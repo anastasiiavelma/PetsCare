@@ -7,7 +7,7 @@ const PrivateRoutes = () => {
   return (
     <Routes>
       <Route path="/home" element={<MainPage />} />
-      <Route path="*" element={<Navigate to="/home" />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
 }
@@ -15,7 +15,7 @@ const PublicRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<AuthPage />} />
-      <Route path="/home" element={<MainPage />} />
+      <Route path="/" element={<MainPage />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   )

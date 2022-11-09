@@ -2,7 +2,7 @@
     background-color: #fff;
     padding: 10px 0;
     border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .inner {
@@ -11,24 +11,25 @@
 }
 
 .logo {
-    background-color: black;
-    color: #fff;
+    margin-top: 10px;
+    color: #000000;
+    font-size: 50px;
     font-weight: 700;
-    line-height: 40px;
     text-transform: uppercase;
-    letter-spacing: 0.15px;
-    border-radius: 5px;
-    padding: 0 10px;
-    text-decoration: none;
+    letter-spacing: 0.15rem;
 }
 
+.container {
+    text-align: center;
+}
 
 button {
-    background-color: white;
-    color: black;
-    margin-left: 10px;
+    display: inline;
+    padding: 1rem 1rem;
 }
+
 
 a {
     text-decoration: none;
 }
+

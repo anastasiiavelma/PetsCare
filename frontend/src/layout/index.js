@@ -10,8 +10,14 @@ const PageLayout = ({ children }) => {
   }
   return (
     <>
-      <Stack alignItems="center" direction="row" sx={{ height: '64px' }}>
-        <Select value={i18n.language} onChange={handleChangeLanguage} sx={{ marginLeft: 'auto' }}>
+      <Stack
+        sx={{
+          height: 'px',
+          width: 'px',
+          marginBottom: '1px',
+          marginTop: '5px'
+        }}>
+        <Select value={i18n.language} onChange={handleChangeLanguage}>
           <MenuItem value="en">EN</MenuItem>
           <MenuItem value="ua">UA</MenuItem>
         </Select>
