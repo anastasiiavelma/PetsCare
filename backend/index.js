@@ -16,6 +16,7 @@ import * as petPassportController from "./controllers/petPassportConrollers.js";
 import * as TestControllers from "./controllers/TestControllers.js";
 import cors from "cors";
 import http from "http";
+import multer from "multer";
 
 const app = express()
 
@@ -25,6 +26,20 @@ const server = http.createServer(app)
 const port = 5000
 
 app.use(express.json());
+
+const storage = multer.diskStorage({
+    destination: (_,_, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (_,file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+
+const upload = multer({ storage });
+
+
+
 app.use(cors());
 
 mongoose.connect('mongodb+srv://petsCare:PetsCare270203Work@petscare.q0mdbtj.mongodb.net/PetsCare?retryWrites=true&w=majority').then(() => console.log('db ok')).catch((err) => console.log('bb err', err));
@@ -33,7 +48,11 @@ app.post('/auth/login', loginValidation, AccountController.login );
 app.post('/auth/register', registerValidation, AccountController.register);
 app.get('/auth/me', checkAuth, AccountController.getMe);
 
-
+app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
+    res.json({
+        url: '/uploads/${req.file.originalname}'
+    });
+});
 app.get('/articles',  ArticleController.getAll);
 app.get('/articles/:id', checkAuth, ArticleController.getOne);
 app.post('/articles',checkAuth, articleCreateValidation, ArticleController.create);
