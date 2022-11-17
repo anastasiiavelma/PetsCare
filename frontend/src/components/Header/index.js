@@ -16,6 +16,18 @@ export const Header = () => {
           <a className={styles.logo} href="/home">
             <div>PetsCare</div>
           </a>
+          <div style={{ marginTop: '25px', display: 'flex', justifyContent: 'space-around' }}>
+            <div>
+              <a className={styles.logo1} href="/stat">
+                <div>Stat</div> <div style={{ color: 'white' }}>wwwwwww</div>
+              </a>
+            </div>
+            <div>
+              <a className={styles.logo1} href="/">
+                <div>Post</div>
+              </a>
+            </div>
+          </div>
           <div className={styles.container}>
             <div className={styles.button}>
               <>

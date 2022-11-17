@@ -2,27 +2,24 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AuthPage from '../pages/AuthPage'
 import MainPage from '../pages/MainPage'
+import { Home } from '../pages/Home'
+import { Post } from '../components/Post'
+import { AddPost } from '../pages/AddPost'
 
-const PrivateRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/home" element={<MainPage />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
-  )
-}
 const PublicRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/article/:id" element={<Post />} />
+      <Route path="/add-article" element={<AddPost />} />
       <Route path="/login" element={<AuthPage />} />
-      <Route path="/" element={<MainPage />} />
+      <Route path="/stat" element={<MainPage />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   )
 }
 const Root = () => {
-  const user = false
-  return user ? <PrivateRoutes /> : <PublicRoutes />
+  return <PublicRoutes />
 }
 
 export default Root

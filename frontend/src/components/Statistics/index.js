@@ -13,14 +13,14 @@ function Statistics() {
     setAllStatistics((prev) => [
       {
         type: 'AreaChart',
-        title: 'Users',
+        title: 'All Users',
         data: '',
         xAsis: 'dateOfGettingPro',
         yAsis: 'count'
       },
       {
         type: 'AreaChart',
-        title: 'Registered Users',
+        title: 'Users',
         data: '',
         xAsis: 'dateOfRegister',
         yAsis: 'count'

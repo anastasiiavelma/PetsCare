@@ -11,9 +11,19 @@
 }
 
 .logo {
-    margin-top: 10px;
+    margin-top: 5px;
     color: #000000;
     font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+}
+
+.logo1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #000000;
+    font-size: 25px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15rem;
