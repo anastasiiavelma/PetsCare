@@ -15,10 +15,10 @@ import { fetchRemovePost } from '../../redux/slices/posts'
 import {t} from "i18next";
 
 export const Post = ({
-  id, title,
+  id, name,
   createdAt,
-  imageUrl,
-  user,
+  photoUrl,
+  account,
   viewsCount,
   children,
   isFullPost,
@@ -50,18 +50,18 @@ export const Post = ({
           </IconButton>
         </div>
       )}
-      {imageUrl && (
+      {photoUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={imageUrl}
-          alt={title}
+          src={photoUrl}
+          alt={name}
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        <UserInfo {...account} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
+            {isFullPost ? name : <Link to={`/articles/${id}`}>{name}</Link>}
           </h2>
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}>

@@ -10,17 +10,16 @@ import { selectIsAuth } from '../../redux/slices/auth'
 import styles from './style.module.scss'
 import { useNavigate, Navigate, useParams } from 'react-router-dom'
 import axios from '../../axios'
-import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 export const AddPost = () => {
-  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
   const isAuth = useSelector(selectIsAuth)
   const [setLoading] = React.useState(false)
-  const [text, setText] = React.useState('')
-  const [title, setTitle] = React.useState('')
-  const [imageUrl, setImageUrl] = React.useState('')
+  const [textInfo, setTextInfo] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [photoUrl, setPhotoUrl] = React.useState('')
   const inputFileRef = React.useRef(null)
   const isEditing = Boolean(id)
 
@@ -30,7 +29,7 @@ export const AddPost = () => {
       const file = event.target.files[0]
       formData.append('image', file)
       const { data } = await axios.post('/upload', formData)
-      setImageUrl(data.url)
+      setPhotoUrl(data.url)
     } catch (err) {
       console.warn(err)
       alert(`${t('An error occured while downloading the file')}`)
@@ -38,21 +37,17 @@ export const AddPost = () => {
   }
 
   const onClickRemoveImage = () => {
-    setImageUrl('')
+    setPhotoUrl('')
   }
 
   const onChange = React.useCallback((value) => {
-    setText(value)
+    setTextInfo(value)
   }, [])
 
   const onSubmit = async () => {
     try {
       setLoading(true)
-      const fields = {
-        title,
-        imageUrl,
-        text
-      }
+      const fields = { name, photoUrl, textInfo }
       const { data } = isEditing
         ? await axios.patch(`/articles/${id}`, fields)
         : await axios.post('/articles', fields)
@@ -69,9 +64,9 @@ export const AddPost = () => {
       axios
         .get(`/articles/${id}`)
         .then(({ data }) => {
-          setTitle(data.title)
-          setText(data.text)
-          setImageUrl(data.imageUrl)
+          setName(data.name)
+          setTextInfo(data.textInfo)
+          setPhotoUrl(data.photoUrl)
         })
         .catch((err) => {
           console.warn(err)
@@ -105,13 +100,13 @@ export const AddPost = () => {
         {t('Download preview')}
       </Button>
       <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
-      {imageUrl && (
+      {photoUrl && (
         <Button variant="contained" color="error" onClick={onClickRemoveImage}>
           {t('Delete')}
         </Button>
       )}
-      {imageUrl && (
-        <img className={styles.image} src={`http://localhost:5000${imageUrl}`} alt="Uploaded" />
+      {photoUrl && (
+        <img className={styles.image} src={`http://localhost:5000${photoUrl}`} alt="Uploaded" />
       )}
       <br />
       <br />
@@ -119,12 +114,12 @@ export const AddPost = () => {
         classes={{ root: styles.title }}
         variant="standard"
         placeholder={t('Article title')}
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         fullWidth
       />
 
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
+      <SimpleMDE className={styles.editor} value={textInfo} onChange={onChange} options={options} />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
           {isEditing ? `${t('Save')}` : `${t('Create')}`}

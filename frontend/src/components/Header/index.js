@@ -13,7 +13,7 @@ export const Header = () => {
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <a className={styles.logo} href="/home">
+          <a className={styles.logo} href="/Home.jsx">
             <div>PetsCare</div>
           </a>
           <div style={{ marginTop: '25px', display: 'flex', justifyContent: 'space-around' }}>

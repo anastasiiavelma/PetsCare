@@ -31,14 +31,14 @@ export const FullPost = () => {
     <>
       <Post
         id={data._id}
-        title={data.title}
-        imageUrl={data.imageUrl ? `http://localhost:5000${data.imageUrl}` : ''}
-        user={data.user}
+        name={data.name}
+        photoUrl={data.photoUrl ? `http://localhost:5000${data.photoUrl}` : ''}
+        account={data.account}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         isFullPost>
         {/* eslint-disable-next-line react/no-children-prop */}
-        <ReactMarkdown children={data.text} />
+        <ReactMarkdown children={data.textInfo} />
       </Post>
     </>
   )

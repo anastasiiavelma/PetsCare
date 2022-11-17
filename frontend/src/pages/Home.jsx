@@ -37,9 +37,9 @@ export const Home = () => {
                 ) : (
                   <Post
                     id={obj._id}
-                    title={obj.title}
-                    imageUrl={obj.imageUrl ? `http://localhost:5000${obj.imageUrl}` : ''}
-                    user={obj.user}
+                    title={obj.name}
+                    imageUrl={obj.photoUrl ? `http://localhost:5000${obj.photoUrl}` : ''}
+                    user={obj.account}
                     createdAt={obj.createdAt}
                     viewsCount={obj.viewsCount}
                     isEditable={isAuth}
