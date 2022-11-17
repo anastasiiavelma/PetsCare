@@ -20,12 +20,12 @@ function App() {
       <Header />
       <Container maxWidth="lg">
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/stat" element={<StatPage />} />
           <Route path="/articles/:id" element={<FullPost />} />
           <Route path="/articles/:id/edit" element={<AddPost />} />
           <Route path="/add-articles" element={<AddPost />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Container>
     </>

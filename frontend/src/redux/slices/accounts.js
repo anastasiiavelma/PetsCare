@@ -4,6 +4,7 @@ import axios from "../../axios";
 export const fetchAcc = createAsyncThunk('accounts/fetchAcc', async (params) => {
   const { data } = await axios.post('/accounts', params)
   return data;
+
 });
 
 const initialState = {
@@ -32,6 +33,6 @@ const accSlice = createSlice({
   }
 });
 
-export const accounts = (state) => Number(state.account.data);
+export const accounts = (state) => state.account.data;
 
 export const accReducer = accSlice.reducer;
