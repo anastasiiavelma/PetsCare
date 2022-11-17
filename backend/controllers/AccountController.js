@@ -3,6 +3,22 @@ import bcrypt from "bcrypt";
 import AccountModel from "../models/Account.js";
 import jwt from "jsonwebtoken";
 
+
+export const getAll = async (req, res) => {
+    try{
+        const accounts = await AccountModel.find().populate('account').exec();
+
+        res.json(accounts);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({
+            message: 'Failed get accounts',
+        });
+    }
+};
+
+
 export const register = async (req, res) => {
     try {
         const errors = validationResult(req);

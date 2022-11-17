@@ -19,16 +19,12 @@ import http from "http";
 import multer from "multer";
 
 const app = express()
-
-
-
 const server = http.createServer(app)
 const port = 5000
-
 app.use(express.json());
-
+app.use('/uploads', express.static('/uploads'));
 const storage = multer.diskStorage({
-    destination: (_,_, cb) => {
+    destination: (_,__, cb) => {
         cb(null, 'uploads');
     },
     filename: (_,file, cb) => {
@@ -37,9 +33,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
-
-
 app.use(cors());
 
 mongoose.connect('mongodb+srv://petsCare:PetsCare270203Work@petscare.q0mdbtj.mongodb.net/PetsCare?retryWrites=true&w=majority').then(() => console.log('db ok')).catch((err) => console.log('bb err', err));
@@ -47,6 +40,7 @@ mongoose.connect('mongodb+srv://petsCare:PetsCare270203Work@petscare.q0mdbtj.mon
 app.post('/auth/login', loginValidation, AccountController.login );
 app.post('/auth/register', registerValidation, AccountController.register);
 app.get('/auth/me', checkAuth, AccountController.getMe);
+app.get('/accounts',  AccountController.getAll);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     res.json({

@@ -1,7 +1,6 @@
-import React from 'react'
-import styles from './style.module.scss'
+import React from 'react';
+import styles from './UserInfo.module.scss';
 
-// eslint-disable-next-line react/prop-types
 export const UserInfo = ({ avatarUrl, email, additionalText }) => {
   return (
     <div className={styles.root}>
@@ -11,5 +10,5 @@ export const UserInfo = ({ avatarUrl, email, additionalText }) => {
         <span className={styles.additional}>{additionalText}</span>
       </div>
     </div>
-  )
-}
+  );
+};

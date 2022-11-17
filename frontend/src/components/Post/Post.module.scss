@@ -1,9 +1,9 @@
-$blue: #4361ee;
+$blue: #f8f7f7;
 
 .root {
-  background-color: #fff;
-  border: 1px solid #dedede;
-  border-radius: 6px;
+  background-color: #f4b2c4;
+  border: 1px solid #370707;
+  border-radius: 20px;
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
@@ -19,7 +19,7 @@ $blue: #4361ee;
 
   &Full {
     &:hover {
-      background-color: #fff;
+      background-color: #fdd1e3;
       border: 1px solid #dedede;
       box-shadow: none;
     }
@@ -90,7 +90,7 @@ $blue: #4361ee;
 
     a {
       text-decoration: none;
-      color: #000;
+      color: #000000;
     }
   }
 }
@@ -115,7 +115,7 @@ $blue: #4361ee;
 }
 
 .skeleton {
-  background-color: #fff;
+  background-color: #f38cc4;
   border: 1px solid #dedede;
   border-radius: 6px;
   overflow: hidden;
@@ -151,7 +151,7 @@ $blue: #4361ee;
   position: absolute;
   right: 15px;
   top: 15px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(244, 178, 196);
   border-radius: 10px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
