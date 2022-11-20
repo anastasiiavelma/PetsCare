@@ -1,73 +1,77 @@
-import { Box, Container } from '@mui/material'
-import StatCard from '../StatCard'
-import React, { useEffect, useState } from 'react'
-import { PacmanLoader } from 'react-spinners'
+import { PeopleAltOutlined, TextSnippetOutlined } from "@mui/icons-material";
+import {
+  Box,
+  Paper,
+  Typography,
+} from '@mui/material';
+import React, { useEffect } from 'react';
+import { fetchPosts} from "../../redux/slices/posts";
+import { fetchAcc } from "../../redux/slices/accounts";
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import {pink } from "@mui/material/colors";
 
-function Statistics() {
-  const [allStatistics, setAllStatistics] = useState([])
-  const [loading, setLoading] = useState(true)
+import { useTranslation } from "react-i18next";
 
-  useEffect(async () => {
-    setAllStatistics([])
 
-    setAllStatistics((prev) => [
-      {
-        type: 'AreaChart',
-        title: 'All Users',
-        data: '',
-        xAsis: 'dateOfGettingPro',
-        yAsis: 'count'
-      },
-      {
-        type: 'AreaChart',
-        title: 'Users',
-        data: '',
-        xAsis: 'dateOfRegister',
-        yAsis: 'count'
-      },
-      {
-        type: 'AreaChart',
-        title: 'Registered Users',
-        data: '',
-        xAsis: 'dateOfRegister',
-        yAsis: 'count'
-      }
-    ])
+const Stat = (id) => {
 
-    setLoading(false)
-  }, [])
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const { posts } = useSelector(state => state.posts);
+  const { accounts } = useSelector(state => state.accounts);
+  const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+    dispatch(fetchAcc());
+  }, []);
   return (
-    <Container>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'left',
-          flexWrap: 'wrap'
-        }}>
-        {loading ? (
-          <PacmanLoader
-            loading={loading}
-            size={60}
-            css={{ margin: '50px auto 0', display: 'block' }}
-            color="#C1C77A"
-          />
-        ) : (
-          allStatistics.map((item) => (
-            <StatCard
-              maxHeight={item.maxHeight ? item.maxHeight : undefined}
-              type={item.type}
-              key={item.title}
-              title={item.title}
-              data={item.data}
-              xAsis={item.xAsis}
-              yAsis={item.yAsis}
-            />
-          ))
-        )}
-      </Box>
-    </Container>
-  )
-}
 
-export default Statistics
+    <Box
+      sx={{
+        marginLeft:'300px',
+        marginTop:'60px',
+        height:'200px',
+        width:'2000px',
+        display: { xs: 'flex', md: 'grid' },
+        gridTemplateColumns: 'repeat(3,1fr)',
+        gap: 1,
+        textAlign: 'center',
+        flexDirection: 'row',
+      }}
+    >
+
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">{t('Total Users')}</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <PeopleAltOutlined sx={{ height: 100, width: 100, opacity: 0.3, mr: 1, color: pink[500] }} />
+          <Typography variant="h4">{accounts.items.length}</Typography>
+        </Box>
+      </Paper>
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">{t('Total Articles')}</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <TextSnippetOutlined sx={{ height: 100, width: 100, opacity: 0.3, mr: 1, color: pink[500] }} />
+          <Typography variant="h4">{posts.items.length}</Typography>
+        </Box>
+      </Paper>
+
+    </Box>
+  );
+};
+
+export default Stat;

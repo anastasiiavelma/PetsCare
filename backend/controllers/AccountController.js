@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 export const getAll = async (req, res) => {
     try{
-        const accounts = await AccountModel.find().populate('account').exec();
+        const accounts = await AccountModel.find();
 
         res.json(accounts);
     }

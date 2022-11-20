@@ -16,7 +16,6 @@ const AccountSchema = new mongoose.Schema({
     role:{                  // ADMIN OR USER
         type: String,
     },
-
 }, {
     timestamps: true,
     },

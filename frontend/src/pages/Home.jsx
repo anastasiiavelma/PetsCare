@@ -8,7 +8,7 @@ import { fetchPosts } from '../redux/slices/posts';
 import { selectIsAuth } from "../redux/slices/auth";
 import 'react-tabs/style/react-tabs.css';
 import { useTranslation } from 'react-i18next';
-import background from "../assets/backCat1.jpg";
+import { Typography } from "@mui/material";
 
 
 export const Home = () => {
@@ -28,6 +28,7 @@ export const Home = () => {
 
   return (
     < >
+      <Typography variant="h3" sx={{paddingBottom: '30px', marginLeft: '510px', fontWeight: '600', color: '#f4b2c4'}}>{t('Articles')}</Typography>
       <Tabs>
         <TabPanel>
           <Grid container spacing={4}>

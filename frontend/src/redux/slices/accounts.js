@@ -1,38 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../axios";
 
-export const fetchAcc = createAsyncThunk('accounts/fetchAcc', async (params) => {
-  const { data } = await axios.post('/accounts', params)
+export const fetchAcc = createAsyncThunk('acc/fetchAcc', async () => {
+  const { data } = await axios.get('/accounts')
   return data;
-
 });
 
 const initialState = {
-  data: [],
-  status: 'loading',
+  accounts:{
+    items: [],
+    status: 'loading',
+  }
 }
 
+
 const accSlice = createSlice({
-  name: 'account',
+  name: 'accounts',
   initialState,
   reducers: {},
   extraReducers: {
     [fetchAcc.pending]: (state) => {
-      state.account.status = 'loading';
-      state.account.data = null;
+      state.accounts.status = 'loading';
     },
     [fetchAcc.fulfilled]: (state, action) => {
-      state.account.status = 'loaded';
-      state.account.data = action.payload;
+      state.accounts.items = action.payload;
+      state.accounts.status = 'loaded';
     },
     [fetchAcc.rejected]: (state) => {
-      state.account.status = 'error';
-      state.account.data = null;
+      state.accounts.items = [];
+      state.accounts.status = 'error';
     },
 
   }
 });
-
-export const accounts = (state) => state.account.data;
 
 export const accReducer = accSlice.reducer;

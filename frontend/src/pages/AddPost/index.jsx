@@ -95,9 +95,7 @@ export const AddPost = () => {
 
   return (
     <Paper style={{ padding: 30 }}>
-      <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
-        {t('Download preview')}
-      </Button>
+
       <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
       {photoUrl && (
         <Button variant="contained" color="error" onClick={onClickRemoveImage}>
