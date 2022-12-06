@@ -4,21 +4,35 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.petscare.data.MyService
+import com.example.petscare.data.RetrofitClient
 import com.example.petscare.databinding.ActivityLoginBinding
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 @SuppressLint("CheckResult")
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var myService: MyService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val retrofit = RetrofitClient.getInstance()
+        myService = retrofit.create(MyService::class.java)
 
         //validation password
         val passwordStream = RxTextView.textChanges(binding.etPassword)
@@ -59,14 +73,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-
-
         binding.loginButton.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            loginUser( binding.etEmail.text.toString(), binding.etPassword.text.toString())
+           // startActivity(Intent(this, HomeActivity::class.java))
         }
         binding.dontAcc.setOnClickListener{
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -75,6 +84,18 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun loginUser(email: String, password: String){
+        lifecycleScope.launch {
+
+            val params = JSONObject(mapOf("password" to password, "email" to email))
+                .toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+            withContext(Dispatchers.IO) {
+                myService.loginUser(params)
+            }
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+        }
+    }
     private fun showTextMinimalAlert(isNotValid: Boolean, text: String) {
         if (text == "Email")
             binding.etEmail.error = if (isNotValid) "$text is invalid" else null
