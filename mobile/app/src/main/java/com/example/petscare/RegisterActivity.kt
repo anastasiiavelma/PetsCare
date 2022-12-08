@@ -119,16 +119,16 @@ class RegisterActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 myService.registerUser(params)
             }
-            startActivity(Intent(this@RegisterActivity, HomeActivity::class.java))
+            startActivity(Intent(this@RegisterActivity, MenuActivity::class.java))
         }
     }
 
     private fun showTextMinimalAlert(isNotValid: Boolean, text: String) {
         if (text == "Name")
-            binding.etName.error = if (isNotValid) "$text must be 2 and more charachters" else null
+            binding.etName.error = if (isNotValid) "$text must be 2 and more characters" else null
         else if (text == "Password")
             binding.etPassword.error =
-                if (isNotValid) "$text must be 8 and more charachters" else null
+                if (isNotValid) "$text must be 8 and more characters" else null
 
     }
 

@@ -25,6 +25,9 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="home">home</string>
+    <string name="my_profile">my_profile</string>
+    <string name="notes">notes</string>
 
 
 </resources>

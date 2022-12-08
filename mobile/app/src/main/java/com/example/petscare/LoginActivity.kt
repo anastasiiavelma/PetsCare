@@ -93,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 myService.loginUser(params)
             }
-            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
         }
     }
     private fun showTextMinimalAlert(isNotValid: Boolean, text: String) {
