@@ -26,8 +26,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="home">home</string>
-    <string name="my_profile">my_profile</string>
+    <string name="my_profile">pet passport</string>
+    <string name="enter_notes">Enter your notes</string>
+    <string name="enter_name">Enter note\'s name</string>
     <string name="notes">notes</string>
+    <string name="add_note">add note</string>
+    <string name="update_note">update note</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="posts">posts</string>
 
 
 </resources>

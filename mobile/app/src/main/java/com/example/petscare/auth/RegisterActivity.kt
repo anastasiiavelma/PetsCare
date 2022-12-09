@@ -1,27 +1,24 @@
-package com.example.petscare
+package com.example.petscare.auth
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.petscare.menu.HomeActivity
+import com.example.petscare.R
 import com.example.petscare.data.MyService
 import com.example.petscare.data.RetrofitClient
 import com.example.petscare.databinding.ActivityRegisterBinding
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers.io
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
@@ -119,7 +116,7 @@ class RegisterActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 myService.registerUser(params)
             }
-            startActivity(Intent(this@RegisterActivity, MenuActivity::class.java))
+            startActivity(Intent(this@RegisterActivity, HomeActivity::class.java))
         }
     }
 

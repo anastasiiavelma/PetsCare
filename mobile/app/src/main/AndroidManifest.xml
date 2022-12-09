@@ -17,21 +17,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MenuActivity"
+            android:name=".menu.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".menu.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".auth.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.PetsCare.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".auth.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

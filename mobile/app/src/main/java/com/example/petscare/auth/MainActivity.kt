@@ -1,9 +1,8 @@
-package com.example.petscare
+package com.example.petscare.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import com.example.petscare.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,5 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
     }
 }

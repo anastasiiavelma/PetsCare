@@ -8,19 +8,33 @@
 
     <fragment
         android:id="@+id/home"
-       android:name="com.example.petscare.PostsFragment"
+       android:name="com.example.petscare.posts.PostsFragment"
         android:label="Home"
         tools:layout="@layout/fragment_posts" />
 
     <fragment
         android:id="@+id/my_profile"
-        android:name="com.example.petscare.MyProfileFragment"
+        android:name="com.example.petscare.myProfile.MyProfileFragment"
         android:label="Home"
         tools:layout="@layout/fragment_my_profile" />
+
     <fragment
         android:id="@+id/notes"
-        android:name="com.example.petscare.NotesFragment"
+        android:name="com.example.petscare.notes.NotesFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_notes" />
+        tools:layout="@layout/fragment_notes">
+
+        <action
+            android:id="@+id/to_add_note"
+            app:destination="@id/add_notes_dialog" />
+
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/add_notes_dialog"
+        android:name="com.example.petscare.notes.AddNoteDialog"
+        android:label="Add Note Dialog"
+        tools:layout="@layout/add_note_dialog" />
 
 </navigation>

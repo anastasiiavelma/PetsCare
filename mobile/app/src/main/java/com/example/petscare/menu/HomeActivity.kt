@@ -1,24 +1,24 @@
-package com.example.petscare
+package com.example.petscare.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.petscare.databinding.ActivityMenuBinding
-import com.example.petscare.databinding.ActivityRegisterBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.petscare.R
+import com.example.petscare.databinding.ActivityHomeBinding
 
-class MenuActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMenuBinding
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMenuBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupNavController()
+
+
     }
 
     private fun setupNavController() {

@@ -17,4 +17,14 @@ interface MyService {
         @Body params: RequestBody
     ): JsonObject
 
+    @GET("notes")
+    suspend fun getNotes(
+    ): ArrayList<Note>
+
+    @POST("notes")
+    suspend fun createNote(
+        @Body params: RequestBody
+    ): JsonObject
+
+
 }

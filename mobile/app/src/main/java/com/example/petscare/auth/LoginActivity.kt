@@ -1,13 +1,13 @@
-package com.example.petscare
+package com.example.petscare.auth
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.petscare.menu.HomeActivity
+import com.example.petscare.R
 import com.example.petscare.data.MyService
 import com.example.petscare.data.RetrofitClient
 import com.example.petscare.databinding.ActivityLoginBinding
@@ -65,11 +65,15 @@ class LoginActivity : AppCompatActivity() {
                 isValid ->
             if (isValid){
                 binding.loginButton.isEnabled = true
-                binding.loginButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.primary)
+                binding.loginButton.backgroundTintList = ContextCompat.getColorStateList(this,
+                    R.color.primary
+                )
             }
             else {
                 binding.loginButton.isEnabled = false
-                binding.loginButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.non_active)
+                binding.loginButton.backgroundTintList = ContextCompat.getColorStateList(this,
+                    R.color.non_active
+                )
             }
         }
 
@@ -93,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 myService.loginUser(params)
             }
-            startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
         }
     }
     private fun showTextMinimalAlert(isNotValid: Boolean, text: String) {
