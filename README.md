@@ -1,4 +1,4 @@
-<center><h1>EnteringNumberPhoneApp 	&#127762;</h1></center>
+<center><h1>PetsCare 	&#128021;</h1></center>
 
 <p>This application is about taking care of pets. The application allows you to track your pet's health by keeping notes about him and keeping pet passport.</p>
 <p>The user also has the ability to view the posts created by the administrator.</p>
